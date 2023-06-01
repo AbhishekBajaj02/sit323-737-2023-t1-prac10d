@@ -1,0 +1,28 @@
+steps:
+# Build Docker Image
+- name: 'gcr.io/cloud-builders/docker'
+  id: Build
+  args: ['build', '-t', 'gcr.io/${PROJECT_ID}/quote-generator:$COMMIT_SHA', '.']
+
+
+# Docker Push
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push
+  args: ['push', 'gcr.io/${PROJECT_ID}/quote-generator:$COMMIT_SHA']
+
+# Run Test
+- name: 'gcr.io/${PROJECT_ID}/quote-generator:$COMMIT_SHA'
+  id: Run
+  entrypoint: npm 
+  args: ['test']
+
+#deploy
+- name: 'gcr.io/cloud-builders/kubectl'
+  id: deploy
+  args: ['set', 'image', 'deployment/mydeployment', 'mynode=gcr.io/${PROJECT_ID}/quote-generator:$COMMIT_SHA']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=australia-southeast2a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=hello-cluster'
+
+images: 
+- 'gcr.io/${PROJECT_ID}/quote-generator'
