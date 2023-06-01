@@ -19,7 +19,7 @@ steps:
 #deploy
 - name: 'gcr.io/cloud-builders/kubectl'
   id: deploy
-  args: ['set', 'image', 'deployment/mydeployment', 'mynode=gcr.io/${PROJECT_ID}/quote-generator:$COMMIT_SHA']
+  args: ['set', 'image', 'deployment/mydeployment', 'quote-generator=gcr.io/${PROJECT_ID}/quote-generator:$COMMIT_SHA']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=australia-southeast2-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
