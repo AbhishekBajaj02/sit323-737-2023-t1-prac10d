@@ -21,7 +21,7 @@ steps:
   id: deploy
   args: ['set', 'image', 'deployment/mydeployment', 'mynode=gcr.io/${PROJECT_ID}/quote-generator:$COMMIT_SHA']
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=australia-southeast2a'
+  - 'CLOUDSDK_COMPUTE_ZONE=australia-southeast2-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 
 images: 
