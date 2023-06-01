@@ -22,7 +22,7 @@ steps:
   args: ['set', 'image', 'deployment/mydeployment', 'mynode=gcr.io/${PROJECT_ID}/quote-generator:$COMMIT_SHA']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=australia-southeast2a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=hello-cluster'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 
 images: 
 - 'gcr.io/${PROJECT_ID}/quote-generator'
